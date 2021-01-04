@@ -1,0 +1,10 @@
+<h1>商品一覧</h1>
+<% @items.each do |item| %>
+    <tr>
+    <td><%= attachment_image_tag item, :image, format: 'jpeg', size: "100x100", fallback: "no-image.jpg"%><td>
+        <td><%= (item.tax_excluded_price * 1.1).floor %>円</td>
+        <td><%= item.name %></td>
+        <td><%= link_to '商品詳細',item_path(item)%></td>
+        <br>
+    </tr>    
+<% end %>

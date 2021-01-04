@@ -1,0 +1,11 @@
+ <h1>商品一覧</h1>
+ <%= link_to '商品新規登録',new_admin_item_path %><br>
+ <% @items.each do |item| %>
+    <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.tax_excluded_price %></td>
+        <td><%= item.genre.name %></td>
+        <td><%= item.is_unsaled ? '販売停止中' : '販売中'   %></td><br>
+    </tr>    
+<% end %>

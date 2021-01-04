@@ -1,0 +1,28 @@
+<h2>注文情報入力</h2>
+<%= form_with model: @order, url: order_confirm_path,local: true do |f| %>
+<h3>支払方法</h3>
+<label><%= f.radio_button :payment_method, :クレジットカード %> クレジットカード</label>
+<label><%= f.radio_button :payment_method, :銀行振込%> 銀行振込</label>
+<% total = 0 %>
+		<% @cart_items.each do |cart_item| %>
+             <% total += (cart_item.item.tax_excluded_price * 1.1).floor * cart_item.amount  %>
+		<% end %>
+<%= f.hidden_field :billing_price, :value => total %>
+<h3>お届け先</h3>
+<%= f.radio_button :address_option,0%>ご自身の住所  <%= current_end_user.post_code%><%= current_end_user.street_address%><%= current_end_user.last_name%><%= current_end_user.first_name%>
+ <%= hidden_field_tag :shipping_name,current_end_user.last_name+current_end_user.first_name %>
+ <%= hidden_field_tag :shipping_address,current_end_user.street_address %>
+ <%= hidden_field_tag :shipping_number,current_end_user.post_code%>
+<%= f.radio_button :address_option,1 %> 
+登録先の住所
+<%= select_tag :address_id,options_for_select(Address.where(end_user_id: current_end_user.id).map { |c| c.post_code }) %>
+
+<%= f.radio_button :address_option,2%>新規住所
+ <div class="field">
+    <%= f.label :"宛名" %>
+    <%= f.text_field :shipping_name %>
+  </div>
+  <%= f.label :"郵便番号" %> <%= f.text_field :shipping_number %>
+<%= f.label :"住所" %><%= f.text_field :shipping_address %>
+<%= f.submit "追加" ,class: 'btn btn-primary'%>
+<% end %>

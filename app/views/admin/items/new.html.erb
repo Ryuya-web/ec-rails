@@ -1,0 +1,33 @@
+
+
+<%= form_for @item,url: admin_items_path, html: {method: :post} do |f| %>
+  
+  <div class="field">
+    <%= f.label :"商品画像" %>
+    <%= f.attachment_field :image, class: "image" %>
+  </div>
+  <div class="field">
+    <%= f.label :"商品名" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"商品説明" %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :"ジャンル名" %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+  </div>
+
+    <div class="field">
+        <%= f.label :"値段" %>
+        <%= f.text_field :tax_excluded_price %>
+    </div>
+<label><%= f.radio_button :is_unsaled, 'false' %> 販売中</label>
+<label><%= f.radio_button :is_unsaled, 'true' %> 販売停止中</label>
+<div class="actions">
+    <%= f.submit%>
+  </div>
+<% end %>

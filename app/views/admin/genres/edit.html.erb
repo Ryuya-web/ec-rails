@@ -1,0 +1,9 @@
+<%= form_for @genre,url: admin_genre_path(@genre), html: {method: :patch} do |f| %>
+  <div class="field">
+    <%= f.label :"名前" %>
+    <%= f.text_field :name %>
+  </div>
+<label><%= f.radio_button :is_valid, 'true' %> 有効</label>
+<label><%= f.radio_button :is_valid, 'false' %> 無効</label>
+<%= f.submit "変更を保存する", class: 'btn btn-primary'%>
+<% end %>

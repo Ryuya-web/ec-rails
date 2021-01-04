@@ -1,0 +1,5 @@
+<h2>本当に退会しますか？</h2>
+<%= link_to '退会しない',end_user_path(current_end_user) %>
+<% if end_user_signed_in? && @end_user.id == current_end_user.id %>
+        <%= link_to "退会", end_user_hide_path(current_end_user),  "data-confirm" => "本当に退会しますか？",method: :put, class: "btn btn-outline-danger" %>
+<% end %>

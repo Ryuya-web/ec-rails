@@ -1,0 +1,18 @@
+<%= form_for @genre,url: admin_genres_path, html: {method: :post} do |f| %>
+  <div class="field">
+    <%= f.label :"名前" %>
+    <%= f.text_field :name %>
+  </div>
+<label><%= f.radio_button :is_valid, 'true' %> 有効</label>
+<label><%= f.radio_button :is_valid, 'false' %> 無効</label>
+<%= f.submit "追加" ,class: 'btn btn-primary'%>
+<% end %>
+<% @genres.each do |genre| %>
+				<tr>
+					<td><%= genre.name %></td>
+					<td><%= genre.is_valid ? '有効' : '無効'  %></td>
+					<td><%= link_to '編集',edit_admin_genre_path(genre)%></td>
+					
+					<td><br></td>
+				</tr>
+<% end %>

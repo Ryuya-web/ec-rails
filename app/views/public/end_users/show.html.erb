@@ -1,0 +1,16 @@
+<h1>EndUsers#show</h1>
+<p>Find me in app/views/end_users/show.html.erb</p>
+<em>登録情報</em>
+ <%= link_to '編集する',edit_end_user_path(@end_user) %>
+<%= link_to 'パスワード変更' %>
+<h4>氏名</h4><%= @end_user.last_name %>
+<%= @end_user.first_name %><br>
+<h4>カナ</h4><%= @end_user.last_name_kana %>
+<%= @end_user.first_name_kana %><br>
+<h4>住所</h4><%= @end_user.street_address %><br>
+<h4>郵便番号</h4><%= @end_user.post_code %><br>
+<h4>電話番号</h4><%= @end_user.phone_number %><br>
+<h4>メールアドレス</h4><%= @end_user.email %><br>
+
+<h4>配送先</h4><%= link_to '一覧を見る' %>
+<h4>注文履歴</h4><%= link_to '一覧を見る' %>
