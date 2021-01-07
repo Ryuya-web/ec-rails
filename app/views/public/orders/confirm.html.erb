@@ -21,14 +21,12 @@
 <%= @order.payment_method%>
 <em>お届け先</em>
 <%=@order.shipping_number%><%=@order.shipping_address %><%=@order.shipping_name%>
-<%= form_with model: @order, url: order_finish_path,local: true do |f| %>
-
-t.integer "end_user_id", null: false
-    t.string "shipping_number", null: false
-    t.integer "shipping_price", null: false
-    t.string "shipping_name", null: false
-    t.string "shipping_address", null: false
-    t.integer "billing_price", null: false
-    t.integer "payment_method", default: 0, null: false
-    t.integer "order_status", default: 0, null: false
+<%= form_for @order,url: {action: 'create'} do |f| %>
+          <%= f.hidden_field :shipping_price, value: @order.shipping_price %>
+          <%= f.hidden_field :payment_method, value: @order.payment_method %>
+          <%= f.hidden_field :shipping_number, value: @order.shipping_number %>
+          <%= f.hidden_field :shipping_name, value: @order.shipping_address %>
+          <%= f.hidden_field :billing_price, value: @order.billing_price %>
+          <%= f.submit "購入を確定する", class:"btn btn-primary" %>
 <%end%>
+

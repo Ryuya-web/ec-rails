@@ -17,10 +17,10 @@ Rails.application.routes.draw do
     put "/end_users/:id/hide" => "end_users#hide", as: 'end_user_hide'
     resources :items
     post 'orders/confirm' => 'orders#confirm', as: 'order_confirm'
-    post 'orders/finish' => 'orders#finish', as: 'order_finish'
+    get 'orders/finish' => 'orders#finish', as: 'order_finish'
     delete 'cart_items/all_destroy' => 'cart_items#all_destroy'
     resources :cart_items,only: [:destroy,:update,:index,:create]
-    resources :orders, only: [:index, :new, :show] 
+    resources :orders, only: [:index, :new, :create, :show] 
   end
   namespace :admin do
     get 'top', to: 'homes#top'
