@@ -9,7 +9,7 @@
 		<% end %>
 <%= f.hidden_field :billing_price, :value => total %>
 <h3>お届け先</h3>
-<%= f.radio_button :address_option,0%>ご自身の住所  <%= current_end_user.post_code%><%= current_end_user.street_address%><%= current_end_user.last_name%><%= current_end_user.first_name%>
+<%= f.radio_button :address_option,0,checked: true%>ご自身の住所  <%= current_end_user.post_code%><%= current_end_user.street_address%><%= current_end_user.last_name%><%= current_end_user.first_name%>
  <%= hidden_field_tag :shipping_name,current_end_user.last_name+current_end_user.first_name %>
  <%= hidden_field_tag :shipping_address,current_end_user.street_address %>
  <%= hidden_field_tag :shipping_number,current_end_user.post_code%>

@@ -15,8 +15,7 @@ class Public::CartItemsController < ApplicationController
             flash[:notice] = "New Item was successfully added to cart."
             redirect_to cart_items_path
         else
-
-            render 'end_users/items/show'
+            redirect_back(fallback_location: root_path)
         end
     end
     def update

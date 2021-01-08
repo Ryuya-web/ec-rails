@@ -18,7 +18,7 @@
     <%= (order_detail.item.tax_excluded_price * 1.1).floor%>円
     <%= order_detail.quantity %>
     <%= ((order_detail.item.tax_excluded_price * 1.1).floor * order_detail.quantity) %>円
-    <h3>製作ステータス</h3>
+    <p>製作ステータス</p>
     <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
         <td><%= f.select :make_status,["着手不可","製作待ち","製作中","製作完了"] %></td><!--ステータス選択 -->
     <%= f.submit "更新" ,class:"btn btn-primary btn-xs" %>
