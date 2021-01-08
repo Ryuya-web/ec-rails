@@ -1,0 +1,32 @@
+<h1>注文詳細</h1>
+    <tr>
+        <h3>購入者</h3>
+        <td><%= @order.end_user.last_name+@order.end_user.first_name%> </td>
+        <h3>支払方法</h3>
+        <td><%= @order.payment_method %>
+        <h3>配送先</h3>
+         <td><%= @order.shipping_number %><%= @order.shipping_address %><%= @order.shipping_name %>
+        <td><%= @order.order_status  %></td><br>
+        <h3>注文ステータス</h3>
+        <%= form_for @order, url: admin_order_path do |f| %><!--oreder controllerのupdateの飛ぶ-->
+          　<%= f.select :order_status,["入金待ち","入金確認","製作中","発送準備中","発送済"] ,style: "margin-top:10px;#" %><!--ステータス選択 -->
+          <%= f.submit "更新" ,class: "btn btn-primary btn-sm" %></td>
+          <% end %>
+    </tr>  
+    <% @order.order_details.each do |order_detail| %>
+    <%= order_detail.item.name%>
+    <%= (order_detail.item.tax_excluded_price * 1.1).floor%>円
+    <%= order_detail.quantity %>
+    <%= ((order_detail.item.tax_excluded_price * 1.1).floor * order_detail.quantity) %>円
+    <h3>製作ステータス</h3>
+    <%= form_for order_detail,url: admin_order_detail_path(order_detail) do |f| %>
+        <td><%= f.select :make_status,["着手不可","製作待ち","製作中","製作完了"] %></td><!--ステータス選択 -->
+    <%= f.submit "更新" ,class:"btn btn-primary btn-xs" %>
+    <% end %>
+    <% end %>
+    <h3>商品合計</h3>
+    <%= @order.billing_price %>
+    <h3>送料</h3>
+    <%= @order.shipping_price %>
+    <h3>請求額合計</h3>
+    <%= (@order.billing_price + @order.shipping_price )%>

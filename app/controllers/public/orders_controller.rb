@@ -40,7 +40,6 @@ class Public::OrdersController < ApplicationController
             @order_detail.include_price = (cart_item.item.tax_excluded_price * 1.1).floor
             @order_detail.save
         end
-       
 		cart_items.destroy_all
         redirect_to order_finish_path
     end
