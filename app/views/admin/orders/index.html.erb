@@ -1,0 +1,8 @@
+
+<% @orders.each do |order| %>
+    <tr>
+        <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M'),admin_order_path(order)%></td>
+        <td><%= order.end_user.last_name+order.end_user.first_name%> </td>
+        <td><%= order.order_status  %></td><br>
+    </tr>   
+<% end %>

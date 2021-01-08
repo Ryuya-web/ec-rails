@@ -25,7 +25,8 @@
           <%= f.hidden_field :shipping_price, value: @order.shipping_price %>
           <%= f.hidden_field :payment_method, value: @order.payment_method %>
           <%= f.hidden_field :shipping_number, value: @order.shipping_number %>
-          <%= f.hidden_field :shipping_name, value: @order.shipping_address %>
+          <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+          <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
           <%= f.hidden_field :billing_price, value: @order.billing_price %>
           <%= f.submit "購入を確定する", class:"btn btn-primary" %>
 <%end%>
